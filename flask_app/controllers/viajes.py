@@ -50,7 +50,8 @@ def crear_viaje():
         'destino': destino,
         'fecha_inicio': fecha_inicio,
         'fecha_termino': fecha_termino,
-        'itinerario': itinerario
+        'itinerario': itinerario,
+        'usuarios_id': session['usuario_id']
     }
     Viaje.save(datos_viaje)
     return redirect('/dashboard')
@@ -62,4 +63,33 @@ def eliminar_viaje(id):
 
     Viaje.delete({'id': id})
 
+    return redirect('/dashboard')
+
+@app.route('/actualizar_viaje/<int:id>', methods=['POST'])
+def actualizar_viaje(id):
+    if 'usuario_id' not in session:
+        return redirect('/')
+
+    destino = request.form.get('destino', '').strip()
+    fecha_inicio = request.form.get('fecha_inicio', '').strip()
+    fecha_termino = request.form.get('fecha_termino', '').strip()
+    itinerario = request.form.get('itinerario', '').strip()
+
+    if not destino or not fecha_inicio or not fecha_termino or not itinerario:
+        flash('Todos los campos son obligatorios.', 'viaje')
+        return redirect(f'/editar_viaje/{id}')
+
+    if len(itinerario) > 40:
+        flash('El itinerario no puede superar los 40 caracteres.', 'viaje')
+        return redirect(f'/editar_viaje/{id}')
+
+    datos_viaje = {
+        'id': id,
+        'destino': destino,
+        'fecha_inicio': fecha_inicio,
+        'fecha_termino': fecha_termino,
+        'itinerario': itinerario
+    }
+
+    Viaje.update(datos_viaje)
     return redirect('/dashboard')

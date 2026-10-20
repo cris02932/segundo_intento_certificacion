@@ -9,12 +9,12 @@
     <h1>Editar Viaje</h1>
     <a href="/dashboard">Inicio</a>
     <a href="/cerrar_sesion">Cerrar sesión</a>
-    <form action="/actualizar_viaje/{{ viaje.id }}" method="POST"></form>
-        <p>Destino: <input type="text" name="Destino"></p>
-        <p>Fecha de Inicio: <input type="date" name="Inicio"></p>
-        <p>Fecha de Fin: <input type="date" name="Fin"></p>
-        <p>Itinerario: <textarea name="sinopsis" rows="4" cols="50"></textarea></p>
-        <button>Guardar</button>
+    <form action="/actualizar_viaje/{{ viaje.id }}" method="POST">
+        <p>Destino:<input type="text" name="destino" value="{{ viaje.destino }}" required></p>
+        <p>Fecha de Inicio:<input type="date" name="fecha_inicio"value="{{ viaje.fecha_inicio.strftime('%Y-%m-%d') if viaje.fecha_inicio else '' }}" required></p>
+        <p>Fecha de Fin:<input type="date" name="fecha_termino"value="{{ viaje.fecha_termino.strftime('%Y-%m-%d') if viaje.fecha_termino else '' }}" required></p>
+        <p>Itinerario:<textarea name="itinerario" maxlength="40" required>{{ viaje.itinerario }}</textarea></p>
+        <button type="submit">Guardar</button>
     </form>    
 </body>
 </html>

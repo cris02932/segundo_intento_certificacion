@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Viaje</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='ver_viaje.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>Información del Viaje</h1>
+        <nav>
+            <a href="/dashboard">Inicio</a>
+            <a href="/cerrar_sesion">Cerrar sesión</a>
+        </nav>
+    </header>
+
+    <main>
+        <div>
+            <h2>{{ viaje.destino }}</h2>
+            <p><strong>Organizador:</strong>{{ viaje.nombre }} {{ viaje.apellido }}</p>
+            <p><strong>Fecha de inicio:</strong>{{ viaje.fecha_inicio.strftime('%d-%m-%Y') if viaje.fecha_inicio else 'Sin fecha' }}</p>
+            <p><strong>Fecha de término:</strong>{{ viaje.fecha_termino.strftime('%d-%m-%Y') if viaje.fecha_termino else 'Sin fecha' }}</p>
+        </div>
+                <strong>Itinerario:</strong>
+                <p>{{ viaje.itinerario }}</p>
+    </main>
+
+</body>
+</html>
