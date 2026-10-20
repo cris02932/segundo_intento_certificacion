@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Editar Viaje</h1>
+    <a href="/dashboard">Inicio</a>
+    <a href="/cerrar_sesion">Cerrar sesión</a>
+    <form action="/actualizar_viaje/{{ viaje.id }}" method="POST"></form>
+        <p>Destino: <input type="text" name="Destino"></p>
+        <p>Fecha de Inicio: <input type="date" name="Inicio"></p>
+        <p>Fecha de Fin: <input type="date" name="Fin"></p>
+        <p>Itinerario: <textarea name="sinopsis" rows="4" cols="50"></textarea></p>
+        <button>Guardar</button>
+    </form>    
+</body>
+</html>

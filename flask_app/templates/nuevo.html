@@ -6,15 +6,23 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Nueva pelicula</h1>
-    <a href="">inicio</a> <a href="">Cerrar sesión</a>
-    
-    <h3>Sinopsis no puede estar vacía</h3>
-    <p>Nombre de peli: <input type="text" name="pelicula"></p>
-    <p>Director: <input type="text" name="director"></p>
-    <p>Fecha de estreno: <input type="date" name="estreno"></p>
-    <p>Sinopsis: <textarea name="sinopsis" rows="4" cols="50"></textarea></p>
+    <h1>Nuevo Viaje</h1>
 
-    <button>Guardar Pelicula</button>    
+    <a href="/dashboard">Inicio</a>
+    <a href="/cerrar_sesion">Cerrar sesión</a>
+
+    {% with mensajes = get_flashed_messages(category_filter=['viaje']) %}
+    {% for mensaje in mensajes %}
+        <p>{{ mensaje }}</p>
+    {% endfor %}
+    {% endwith %}
+
+    <form action="/crear_viaje" method="POST">
+    <p>Destino:<input type="text" name="destino" required></p>
+    <p>Fecha de inicio:<input type="date" name="fecha_inicio" required></p>
+    <p>Fecha de fin:<input type="date" name="fecha_termino" required></p>
+    <p>Itinerario:<textarea name="itinerario" rows="4" cols="50"maxlength="40" required></textarea></p>
+    <button type="submit">Guardar</button>
+    </form>    
 </body>
 </html>

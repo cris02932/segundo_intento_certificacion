@@ -28,15 +28,13 @@ class Usuario:
             (nombre, apellido, email, password, created_at, updated_at)
             VALUES (%(nombre)s, %(apellido)s, %(email)s, %(password)s, NOW(), NOW());
         """
-        return connectToMySQL(
-            'ViajeroFrecuente'
-        ).query_db(query, data)
+        return connectToMySQL('ViajeroFrecuente2').query_db(query, data)
 
     #Metodo para ver todos los registros
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM usuarios"
-        usuarios_en_bd = connectToMySQL('ViajeroFrecuente').query_db(query)
+        usuarios_en_bd = connectToMySQL('ViajeroFrecuente2').query_db(query)
         #Lista vacia de usuarios se llena con class usuarios
         usuarios = []
         #por cada usuario que encuentre en usuarios_db
@@ -49,7 +47,7 @@ class Usuario:
     @classmethod
     def get_one(cls,datos):
         query = "SELECT * FROM usuarios WHERE id = %(id)s;"
-        usuario_en_db = connectToMySQL('ViajeroFrecuente').query_db(query,datos)
+        usuario_en_db = connectToMySQL('ViajeroFrecuente2').query_db(query,datos)
         print("USUARIO EN DB",usuario_en_db)
         if not usuario_en_db:
             return None
@@ -59,22 +57,20 @@ class Usuario:
     @classmethod
     def update(cls, datos):
         query = "UPDATE usuarios SET nombre=%(nombre)s, apellido=%(apellido)s, email=%(email)s, password=%(password)s WHERE id = %(id)s;"
-        return connectToMySQL('ViajeroFrecuente').query_db(query, datos)
+        return connectToMySQL('ViajeroFrecuente2').query_db(query, datos)
 
     #Metodo para eliminar 1 registro
     @classmethod
     def delete(cls, datos):
         query = "DELETE FROM usuarios WHERE id = %(id)s;"
-        return connectToMySQL('ViajeroFrecuente').query_db(query, datos)
+        return connectToMySQL('ViajeroFrecuente2').query_db(query, datos)
 
 
 
     @classmethod
     def get_by_email(cls, datos):
         query = "SELECT * FROM usuarios WHERE email = %(email)s;"
-        usuario_en_db = connectToMySQL(
-            'ViajeroFrecuente'
-        ).query_db(query, datos)
+        usuario_en_db = connectToMySQL('ViajeroFrecuente2').query_db(query, datos)
 
         if not usuario_en_db:
             return None

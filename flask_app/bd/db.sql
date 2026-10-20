@@ -5,19 +5,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema ViajeroFrecuente
+-- Schema ViajeroFrecuente2
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema ViajeroFrecuente
+-- Schema ViajeroFrecuente2
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `ViajeroFrecuente` DEFAULT CHARACTER SET utf8 ;
-USE `ViajeroFrecuente` ;
+CREATE SCHEMA IF NOT EXISTS `ViajeroFrecuente2` DEFAULT CHARACTER SET utf8 ;
+USE `ViajeroFrecuente2` ;
 
 -- -----------------------------------------------------
--- Table `ViajeroFrecuente`.`usuarios`
+-- Table `ViajeroFrecuente2`.`usuarios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ViajeroFrecuente`.`usuarios` (
+CREATE TABLE IF NOT EXISTS `ViajeroFrecuente2`.`usuarios` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(255) NULL,
   `apellido` VARCHAR(255) NULL,
@@ -30,9 +30,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ViajeroFrecuente`.`viajes`
+-- Table `ViajeroFrecuente2`.`viajes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ViajeroFrecuente`.`viajes` (
+CREATE TABLE IF NOT EXISTS `ViajeroFrecuente2`.`viajes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `destino` VARCHAR(255) NULL,
   `fecha_inicio` DATETIME NULL,
@@ -45,9 +45,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ViajeroFrecuente`.`comentarios`
+-- Table `ViajeroFrecuente2`.`Comentarios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ViajeroFrecuente`.`comentarios` (
+CREATE TABLE IF NOT EXISTS `ViajeroFrecuente2`.`Comentarios` (
   `usuarios_id` INT NOT NULL,
   `viajes_id` INT NOT NULL,
   PRIMARY KEY (`usuarios_id`, `viajes_id`),
@@ -55,12 +55,12 @@ CREATE TABLE IF NOT EXISTS `ViajeroFrecuente`.`comentarios` (
   INDEX `fk_usuarios_has_viajes_usuarios_idx` (`usuarios_id` ASC) VISIBLE,
   CONSTRAINT `fk_usuarios_has_viajes_usuarios`
     FOREIGN KEY (`usuarios_id`)
-    REFERENCES `ViajeroFrecuente`.`usuarios` (`id`)
+    REFERENCES `ViajeroFrecuente2`.`usuarios` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_usuarios_has_viajes_viajes1`
     FOREIGN KEY (`viajes_id`)
-    REFERENCES `ViajeroFrecuente`.`viajes` (`id`)
+    REFERENCES `ViajeroFrecuente2`.`viajes` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

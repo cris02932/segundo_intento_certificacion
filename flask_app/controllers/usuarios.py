@@ -1,6 +1,7 @@
 from flask_app import app
 from flask import render_template, request, redirect, flash, session
 from flask_app.models.usuario import Usuario
+from flask_app.models.viaje import Viaje
 from flask_bcrypt import Bcrypt #Importamos bycrpt
 
 bcrypt = Bcrypt(app) #Generamos un objeto llamado bcrypt
@@ -14,8 +15,8 @@ def inicio():
 def dashboard():
     if 'usuario_id' not in session:
         return redirect('/')
-
-    return render_template('dashboard.html')
+    viajes = Viaje.get_all()
+    return render_template('dashboard.html',todos_los_viajes=viajes)
 
 
 #registro crear usuario
@@ -53,6 +54,7 @@ def crear_usuario():
     nuevo_id = Usuario.save(datos_usuario_registro) #Recibiendo el ID del nuevo Usuario
 
     session['usuario_id'] = nuevo_id
+    session['nombre'] = datos_usuario_registro['nombre']
 
     return redirect('/dashboard')
 
