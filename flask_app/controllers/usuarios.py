@@ -54,7 +54,7 @@ def crear_usuario():
 
     session['usuario_id'] = nuevo_id
 
-    return redirect('/')
+    return redirect('/dashboard')
 
 
 
@@ -71,7 +71,7 @@ def iniciar_sesion():
 
     session['usuario_id'] = usuario.id
     session['nombre'] = usuario.nombre
-    return redirect('/dashboard.html')
+    return redirect('/dashboard')
 
 
 #cerrar sesión
